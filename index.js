@@ -11,9 +11,9 @@ const bot = new BootBot({
   verifyToken: process.env.FB_VERIFY_TOKEN,
   appSecret: process.env.FB_APP_SECRET
 });
-bot.setGreetingText('Hey there! Welcome to Kenya\'s Best Deal Finder!');
+bot.setGreetingText(process.env.TEXT_WELCOME_MESSAGE);
 bot.setGetStartedButton((payload, chat) => {
-  chat.say('Welcome to DealBot. What are you looking for?');
+  chat.say(process.env.TEXT_GET_STARTED_MESSAGE);
 });
 
 bot.setPersistentMenu([
@@ -44,17 +44,16 @@ bot.on('message', (payload, chat) => {
 	dealfinder(text).then(({ products })=>{
     let results = products.filter((item)=> item.price.length)
     if(!results.length){
-      chat.say('We couldnt find what you were searching for.').then(() => {
-		      chat.say('Type something else to find deals. eg lenovo i7', { typing: true });
+      chat.say(process.env.TEXT_NO_RESULT_FOUND).then(() => {
+		      chat.say(process.env.TEXT_TYPE_SOMETHING, { typing: true });
 	    });
     } else {
-
       let result = results[Math.floor(Math.random() * results.length)];
       chat.say({
     		attachment: 'image',
     		url: result.image
     	}, { typing: true }).then(() =>{
-        chat.say(`${result.item} at ${result.price}\n ${result.link}`, { typing: true })
+        chat.say(`${result.item} for ${result.price}\n ${result.link}`, { typing: true })
       });
     }
 
@@ -65,7 +64,7 @@ bot.on('message', (payload, chat) => {
 bot.hear(['help'], (payload, chat) => {
 	// Send a text message with buttons
 	chat.say({
-		text: 'What do you need help with?',
+		text: process.env.TEXT_HELP_MESSAGE,
 		buttons: [
 			{ type: 'postback', title: 'Settings', payload: 'HELP_SETTINGS' },
 			{ type: 'postback', title: 'FAQ', payload: 'HELP_FAQ' },
