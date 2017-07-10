@@ -1,0 +1,22 @@
+{
+  "name": "dealbot",
+  "version": "1.0.0",
+  "description": "Dealbot is an fb mesengerbot that looks for the best deals in local sites like olx, jumia etc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "deals",
+    "olx",
+    "jumia"
+  ],
+  "author": "geofmureithi",
+  "license": "ISC",
+  "dependencies": {
+    "bootbot": "^1.0.12",
+    "change-case": "^3.0.1",
+    "dotenv": "^4.0.0",
+    "scrape-it": "^3.3.2"
+  }
+}
