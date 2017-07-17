@@ -1,8 +1,9 @@
 const sc = require('scrape-it');
 const changeCase = require('change-case')
 module.exports = (phone, query) =>{
-let query = changeCase.paramCase(query);
-let phone = changeCase.paramCase(phone);
+query = changeCase.paramCase(query);
+phone = changeCase.paramCase(phone);
+console.log("Jumia: ${phone} : ${query}");
 return sc(`https://www.jumia.co.ke/smartphones/${phone}/?q=${query}&bcsq=1`, {
 	products:{
 		listItem: '.products',

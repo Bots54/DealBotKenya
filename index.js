@@ -1,9 +1,11 @@
 const dotenv = require('dotenv');
 const BootBot = require('bootbot');
-const dealfinder = require('./scrapers/olx');
 const carsQuickReplies = require('./quickreplies/cars');
 const clothingQuickReplies = require('./quickreplies/clothing');
 const phonesQuickReplies = require('./quickreplies/phones');
+const scraper = require('./scrapers');
+const changeCase = require('change-case');
+
 dotenv.config();
 
 const bot = new BootBot({
@@ -40,23 +42,23 @@ bot.on('postback:PERSISTENT_PHONE', phonesQuickReplies);
 
 
 bot.on('message', (payload, chat) => {
-	const text = payload.message.text;
-	dealfinder(text).then(({ products })=>{
+  if(changeCase.snakeCase(payload.message.text) === "phone")
+    return phonesQuickReplies(payload, chat);
+	scraper(payload, chat).then(({ products })=>{
     let results = products.filter((item)=> item.price.length)
     if(!results.length){
       chat.say(process.env.TEXT_NO_RESULT_FOUND).then(() => {
-		      chat.say(process.env.TEXT_TYPE_SOMETHING, { typing: true });
-	    });
+          chat.say(process.env.TEXT_TYPE_SOMETHING, { typing: true });
+      });
     } else {
       let result = results[Math.floor(Math.random() * results.length)];
       chat.say({
-    		attachment: 'image',
-    		url: result.image
-    	}, { typing: true }).then(() =>{
+        attachment: 'image',
+        url: result.image
+      }, { typing: true }).then(() =>{
         chat.say(`${result.item} for ${result.price}\n ${result.link}`, { typing: true })
       });
     }
-
   })
 });
 

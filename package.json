@@ -4,7 +4,8 @@
   "description": "Dealbot is an fb mesengerbot that looks for the best deals in local sites like olx, jumia etc",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "keywords": [
     "deals",
@@ -14,6 +15,7 @@
   "author": "geofmureithi",
   "license": "ISC",
   "dependencies": {
+    "apiai": "^4.0.3",
     "bootbot": "^1.0.12",
     "case": "^1.5.2",
     "change-case": "^3.0.1",

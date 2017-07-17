@@ -2,6 +2,7 @@ const sc = require('scrape-it');
 const changeCase = require('change-case')
 module.exports = (query) =>{
 let q = changeCase.paramCase(query);
+console.log("Checki: ${query}");
 return sc(`https://www.olx.co.ke/nairobicbd/q-${q}/`, {
 	products:{
 		listItem: 'td.offer',
