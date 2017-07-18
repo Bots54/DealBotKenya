@@ -21,6 +21,10 @@ Dealbot is a simple but powerful Chat bot connected to OLX, Cheki and Jumia whic
 
 - You need to have a page and an app subscribed to the messenger-platform
 
+<a href="https://heroku.com/deploy?template=https://github.com/Bots54/DealBotKenya&env[PORT]=3000">
+  <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
+</a>
+
 ```
 $ git clone
 $ npm install
