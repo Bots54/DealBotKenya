@@ -1,0 +1,7 @@
+{
+  "name": "DealBotKenya",
+  "description": "Dealbot is a simple but powerful Chat bot connected to OLX, Cheki and Jumia which finds you a good deal.",
+  "repository": "https://github.com/Bots54/DealBotKenya",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["deals", "messenger", "bot"]
+}
